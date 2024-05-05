@@ -1,0 +1,49 @@
+.DashboardContainer{
+  box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.09);
+  border-radius: 0.5rem;
+  margin-top:1.5rem;
+  background: white;
+  //height: 100%;
+  .TableContainer{
+    height: 31rem;
+    overflow: hidden;
+  }
+}
+.DashboardWrapper{
+  display: flex;
+  //align-items: center;
+  flex-direction: column;
+  padding: 1rem 4rem;
+}
+.DashboardTableFooter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+  color: grey;
+  font-size: 12px;
+
+}
+.ButtonContainer{
+  display:flex;
+  align-items: center;
+  gap:1rem;
+}
+
+@media (max-width: 768px){
+  .DashboardContainer{
+    width: 100%;
+  }
+  .DashboardWrapper{
+    padding: 1rem;
+    align-items: flex-start;
+    width: 35%;
+  }
+  .DashboardTableFooter{
+    padding: 1rem;
+  }
+  .ButtonContainer{
+    gap:0.5rem;
+  }
+}
