@@ -14,6 +14,7 @@
   //align-items: center;
   flex-direction: column;
   padding: 1rem 4rem;
+  width: 100%;
 }
 .DashboardTableFooter{
   display: flex;
@@ -38,7 +39,7 @@
   .DashboardWrapper{
     padding: 1rem;
     align-items: flex-start;
-    width: 35%;
+    width: 85%;
   }
   .DashboardTableFooter{
     padding: 1rem;

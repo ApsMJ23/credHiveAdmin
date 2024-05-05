@@ -5,6 +5,7 @@ import DashboardTable from "./Components/DashboardTable/DashboardTable.tsx";
 import {useSearchParams} from "react-router-dom";
 import TabSelector from "../../common/Components/TabSelector/TabSelector.tsx";
 import {TabData} from "../../data/TabData.ts";
+import SearchBar from "./Components/SearchBar/SearchBar.tsx";
 
 const Dashboard = () => {
     const [dashBoardData, setDashBoardData] = useState(FakeDataArray);
@@ -57,6 +58,7 @@ const Dashboard = () => {
 
     return (
         <div className={styles.DashboardWrapper}>
+            <SearchBar setData={setDashBoardData}/>
             <h1>Companies List</h1>
             <TabSelector tabs={TabData}/>
             <div className={styles.DashboardContainer}>

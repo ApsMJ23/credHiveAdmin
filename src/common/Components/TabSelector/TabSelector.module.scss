@@ -1,7 +1,7 @@
 .tab-selector {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid lightgray;
   .tab-buttons {
     display: flex;
     gap: 2rem;
@@ -24,6 +24,8 @@
 
       &.active {
         border-bottom: 2px solid #007bff;
+        color: #007bff;
+        font-weight: bold;
       }
     }
   }
@@ -38,7 +40,7 @@
 
 @media (max-width: 768px) {
   .tab-selector {
-    width: 20rem;
+    width: 100%;
     .tab-buttons{
       max-width: 100%;
       overflow: auto;

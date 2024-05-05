@@ -1,0 +1,36 @@
+.SearchBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    background-color: #ffffff;
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    margin: 20px 0;
+    border:1px solid lightgray;
+    outline: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.searchContianer {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  pointer-events: none;
+}
+
+.searchIcon svg {
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .SearchBar {
+    width: 100%;
+  }
+
+}

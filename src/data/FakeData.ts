@@ -44,7 +44,7 @@ export const TableData = {
     companyName: faker.company.name(),
     informalName: faker.company.catchPhraseNoun(),
     recentEditor: faker.person.fullName(),
-    recentEditDate: faker.date.recent().toLocaleDateString(),
+    updatedOn: faker.date.recent().toLocaleDateString(),
     previousChanges: faker.number.int({min: 0, max: 100 }),
 }
 
@@ -54,6 +54,7 @@ export const FakeDataHeaders = Object.keys(TableData).map((key,index) => ({
     key: index
 }));
 
+FakeDataHeaders.push({name: 'Actions', key: FakeDataHeaders.length});
 
 
 // make an array of objects of length 10 using the fakeData object using the faker library
@@ -62,7 +63,7 @@ export const FakeDataArray = Array.from({length: 1000}, () => {
         companyName: faker.company.name(),
         informalName: faker.company.catchPhraseNoun(),
         recentEditor: faker.person.fullName(),
-        recentEditDate: dayjs(faker.date.recent()).format('DD MMM YYYY'),
+        updatedOn: dayjs(faker.date.recent()).format('DD MMM YYYY'),
         previousChanges: faker.number.int({min: 0, max: 100 }),
     })
 });

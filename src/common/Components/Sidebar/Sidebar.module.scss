@@ -7,3 +7,10 @@
     padding: 20px;
     box-sizing: border-box;
 }
+
+@media (min-width: 768px){
+    .SidebarContainer{
+        width: 10%;
+    }
+
+}
