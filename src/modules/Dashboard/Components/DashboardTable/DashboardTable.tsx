@@ -3,15 +3,25 @@ import styles from './DashboardTable.module.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFlag, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import {useEffect, useState} from "react";
+import {useSearchParams} from "react-router-dom";
 
 
 const DashboardTable = (props: TableProps) => {
-    const {headers, rows} = props;
+    const {headers, rows,setShowEditingModal,setShowViewModal} = props;
+    const [params,setParams] = useSearchParams();
+
     const [isFlagged, setIsFlagged] = useState<{[key:number]:boolean}>({});
     useEffect(() => {
         // We can write the logic for flagged entries here when the api is integrated
         setIsFlagged(Object.fromEntries(rows.map((_,i)=>[i,false])));
     }, [rows]);
+    const handleClick = (index:number) => {
+        if(index===0){
+            setShowViewModal(true);
+        }else{
+            return
+        }
+    }
 
     const renderRow = (row: Row,index:number) => {
         return (
@@ -24,12 +34,16 @@ const DashboardTable = (props: TableProps) => {
                         ) : (
                             <FontAwesomeIcon style={{cursor:'pointer'}} onClick={()=>setIsFlagged({...isFlagged,[index]:true})} icon={faFlag} color={'gray'}/>
                         ))}
-                            {row[key]}
+                            <span onClick={()=>handleClick(i)} style={i===0?{cursor:'pointer',textDecoration:'underline',color:'darkblue'}:{}}>{row[key]}</span>
                         </span>
                     </td>
                 ))}
                 <td style={isFlagged[index]?{background:'rgb(255, 230, 230)'}:{}} className={styles.TableCell}>
-                    <FontAwesomeIcon icon={faPenToSquare}/>
+                    <FontAwesomeIcon onClick={()=>{
+                        setShowEditingModal(true)
+                        params.set('id',`${index}`)
+                        setParams(params)
+                    }} style={{height:'1rem',cursor:'pointer'}} icon={faPenToSquare}/>
                 </td>
             </>
         )

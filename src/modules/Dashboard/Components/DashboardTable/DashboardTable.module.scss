@@ -1,4 +1,7 @@
+@import '../../../../common/scss/animations';
+
 .TableContainer {
+  @include animate-fadein(300ms, 0, 0, 0.7);
   max-height: 100%;
   border-radius: 0.25rem;
   overflow-x: auto;
@@ -6,6 +9,7 @@
 }
 
 .Table {
+  @include animate-fadein(300ms, 0, 0, 0.7);
   width: 100%;
   height: 100%;
   border-spacing: 0;

@@ -1,3 +1,5 @@
+@import '../../common/scss/animations';
+
 .DashboardContainer{
   box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.09);
   border-radius: 0.5rem;
@@ -10,6 +12,8 @@
   }
 }
 .DashboardWrapper{
+  @include animate-fadein(300ms, 0, 0, 0.7);
+  overflow-y:auto;
   display: flex;
   //align-items: center;
   flex-direction: column;

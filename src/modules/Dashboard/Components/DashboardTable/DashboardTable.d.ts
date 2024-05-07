@@ -1,6 +1,8 @@
 export type TableProps = {
     headers: Array<Header>;
     rows: Array<Row>;
+    setShowEditingModal: (value:boolean) => void;
+    setShowViewModal: (value:boolean) => void;
 }
 export type Header = {
     name: string;

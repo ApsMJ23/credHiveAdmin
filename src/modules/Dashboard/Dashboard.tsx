@@ -6,47 +6,52 @@ import {useSearchParams} from "react-router-dom";
 import TabSelector from "../../common/Components/TabSelector/TabSelector.tsx";
 import {TabData} from "../../data/TabData.ts";
 import SearchBar from "./Components/SearchBar/SearchBar.tsx";
+import Modal from "../../common/Components/Modal/Modal.tsx";
+import CompanyEditForm from "./Components/CompanyEditForm/CompanyEditForm.tsx";
+import CompanyViewForm from "./Components/CompanyViewForm/CompanyViewForm.tsx";
 
 const Dashboard = () => {
     const [dashBoardData, setDashBoardData] = useState(FakeDataArray);
+    const [showEditingModal, setShowEditingModal] = useState(false);
+    const [showViewModal, setShowViewModal] = useState(false);
     const [pageNo, setPageNo] = useState(1);
-    const [params,setParams] = useSearchParams();
+    const [params, setParams] = useSearchParams();
 
 
-    const fetchData = async (pageNo:number,maxCount:number)=>{
+    const fetchData = async (pageNo: number, maxCount: number) => {
         // fetch data from api
         let data = FakeDataArray;
-        if(pageNo*maxCount>data.length) {
+        if (pageNo * maxCount > data.length) {
             data = data.slice((pageNo - 1) * maxCount, data.length);
-        }else{
+        } else {
             data = data.slice((pageNo - 1) * maxCount, pageNo * maxCount);
         }
         setDashBoardData(data);
     }
     useEffect(() => {
-       if(params.has('page')) {
-           setPageNo(Number(params.get('page')))
-           fetchData(Number(params.get('page')), 10)
-       }else{
-              fetchData(1,10);
-       }
+        if (params.has('page')) {
+            setPageNo(Number(params.get('page')))
+            fetchData(Number(params.get('page')), 10)
+        } else {
+            fetchData(1, 10);
+        }
     }, [params]);
 
-    const changePageNo = (type:string)=>{
+    const changePageNo = (type: string) => {
         switch (type) {
             case 'prev':
-                if(pageNo>1){
-                    setPageNo(pageNo-1);
-                    fetchData(pageNo-1,10);
-                    params.set('page',`${pageNo-1}`);
+                if (pageNo > 1) {
+                    setPageNo(pageNo - 1);
+                    fetchData(pageNo - 1, 10);
+                    params.set('page', `${pageNo - 1}`);
                     setParams(params)
                 }
                 break;
             case 'next':
-                if(pageNo<FakeDataArray.length/10){
-                    setPageNo(pageNo+1);
-                    fetchData(pageNo+1,10);
-                    params.set('page',`${pageNo+1}`);
+                if (pageNo < FakeDataArray.length / 10) {
+                    setPageNo(pageNo + 1);
+                    fetchData(pageNo + 1, 10);
+                    params.set('page', `${pageNo + 1}`);
                     setParams(params)
                 }
                 break;
@@ -63,16 +68,23 @@ const Dashboard = () => {
             <TabSelector tabs={TabData}/>
             <div className={styles.DashboardContainer}>
                 <div className={styles.TableContainer}>
-                    <DashboardTable headers={FakeDataHeaders} rows={dashBoardData}/>
+                    <DashboardTable setShowViewModal={setShowViewModal} setShowEditingModal={setShowEditingModal} headers={FakeDataHeaders}
+                                    rows={dashBoardData}/>
                 </div>
                 <div className={styles.DashboardTableFooter}>
-                    <div>Page {pageNo} of {FakeDataArray.length/10}</div>
+                    <div>Page {pageNo} of {FakeDataArray.length / 10}</div>
                     <div className={styles.ButtonContainer}>
-                        <button onClick={()=>changePageNo('prev')} style={{width:'5rem'}}>Previous</button>
-                        <button onClick={()=>changePageNo('next')} style={{width:'5rem'}}>Next</button>
+                        <button onClick={() => changePageNo('prev')} style={{width: '5rem'}}>Previous</button>
+                        <button onClick={() => changePageNo('next')} style={{width: '5rem'}}>Next</button>
                     </div>
                 </div>
             </div>
+            <Modal open={showEditingModal} onClose={() => setShowEditingModal(false)}>
+                <CompanyEditForm setShowEditingModal={setShowEditingModal}/>
+            </Modal>
+            <Modal open={showViewModal} onClose={()=>setShowViewModal(false)}>
+                <CompanyViewForm setShowViewModal={setShowViewModal}/>
+            </Modal>
         </div>
     )
 }

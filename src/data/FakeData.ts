@@ -2,43 +2,66 @@ import { faker } from '@faker-js/faker';
 import {convertCamelCaseToSentenceCase} from "../utils/utility.ts";
 import dayjs from "dayjs";
 
-export const ModalData = [{
-    emails: [
-        {
-            id: 1,
-            email: faker.internet.email(),
-            type: 'Finance'
-        },
-        {
-            id: 2,
-            email: faker.internet.email(),
-            type: 'Admin'
-        },
-        {
-            id: 3,
-            email: faker.internet.email(),
-            type: 'Support'
-        }
-    ],
-    supportingDocuments: [
-        {
-            id: 1,
-            name: faker.system.fileName(),
-            type: 'pdf'
-        },
-        {
-            id: 2,
-            name: faker.system.fileName(),
-            type: 'pdf'
-        },
-        {
-            id: 3,
-            name: faker.system.fileName(),
-            type: 'pdf'
-        }
-    ],
+const generateEmailData = ()=>{
+    return Array.from({length:1000},(_,index)=>{
+        return(
+            [
+                {
+                    empId:index,
+                    id: 1,
+                    email: faker.internet.email(),
+                    type: 'Finance'
+                },
+                {
+                    empId:index,
+                    id: 2,
+                    email: faker.internet.email(),
+                    type: 'Admin'
+                },
+                {
+                    empId:index,
+                    id: 3,
+                    email: faker.internet.email(),
+                    type: 'Support'
+                }
+            ]
+        )
+    })
+}
+const generateFileData = ()=>{
+    return Array.from({length:1000},(_,index)=>{
+        return(
+            [
+                {
+                    empId:index,
+                    id: 1,
+                    name: faker.system.fileName(),
+                    type: 'pdf'
+                },
+                {
+                    empId:index,
+                    id: 2,
+                    name: faker.system.fileName(),
+                    type: 'pdf'
+                },
+                {
+                    empId:index,
+                    id: 3,
+                    name: faker.system.fileName(),
+                    type: 'pdf'
+                }
+            ]
+        )
+    })
 
-}]
+}
+
+export const ModalData = {
+    emails: generateEmailData(),
+    supportingDocuments: generateFileData(),
+
+}
+
 
 export const TableData = {
     companyName: faker.company.name(),

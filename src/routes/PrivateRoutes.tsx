@@ -6,7 +6,7 @@ import styles from './Routes.module.scss';
 const PrivateRoutes = () => {
     const {height,width} = useWindowDimensions();
     return (
-        <div className={styles.Wrapper} style={{width:width,height:height,overflowX:'hidden'}}>
+        <div className={styles.Wrapper} style={{width:width,height:height,overflow:'hidden'}}>
             <Sidebar/>
             <Outlet/>
         </div>

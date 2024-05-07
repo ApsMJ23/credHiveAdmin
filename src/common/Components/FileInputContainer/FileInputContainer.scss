@@ -1,0 +1,24 @@
+.file-drop-area {
+  margin: 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-msg {
+  font-size: 12px;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-drop-area.dragging {
+  background-color: #f0f0f0; /* Change background color when dragging over */
+}

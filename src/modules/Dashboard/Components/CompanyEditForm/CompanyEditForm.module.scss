@@ -1,0 +1,112 @@
+.EmailContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  .EmailLabel {
+    font-size: 0.75rem;
+    //float: left;
+  }
+
+  .EmailInput {
+    width: 15rem;
+    margin: 0.25rem 0 0.5rem 0;
+    padding: 0.5rem 1rem;
+    background: #efefef;
+    border: none;
+    border-radius: 0.5rem;
+
+    &:disabled {
+      background: lightgray;
+      color: black;
+      pointer-events: none;
+
+    }
+  }
+}
+
+.CancelButton {
+  width: 100%;
+}
+
+.SaveButton {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  background: darkblue;
+  font-weight: lighter;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border: 1px solid darkblue;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 0 0 0 darkblue;
+}
+
+.SaveButton:hover {
+  color: blue;
+  box-shadow: inset 0 -100px 0 0 #fff;
+}
+
+.ButtonContainer {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.SaveButton:active {
+  transform: scale(0.9);
+  outline: none;
+}
+
+.ExistingDocumentsContainer {
+  padding: 0.5rem;
+  background: #efefef;
+  border-radius: 0.5rem;
+  transition: all 0.1s linear;
+
+  label {
+    font-size: 0.75rem;
+  }
+
+  input {
+    position: relative;
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input:checked {
+    background-color: darkblue;
+  }
+
+  input:checked::before {
+    content: '\2713';
+    font-size: 0.75em;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.ExistingFilelist{
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  font-size: 0.75rem;
+  padding: 0 0.5rem;
+}
