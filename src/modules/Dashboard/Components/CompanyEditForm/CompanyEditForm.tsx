@@ -65,8 +65,8 @@ const CompanyEditForm = (props: CompanyEditFormProps) => {
                     </div>
                     {showDocuments===EXISTING_DOC && ModalData.supportingDocuments?.[Number(params.get('id'))]?.map((document, i) => {
                         return (
-                            <div className={styles.ExistingFilelist}>
-                                <div key={i} className={styles.DocumentContainer}>
+                            <div key={i} className={styles.ExistingFilelist}>
+                                <div className={styles.DocumentContainer}>
                                     <input type={'checkbox'} value={document.name} id={document.name}/>
                                     <label htmlFor={document.name}>{document.name}</label>
                                 </div>

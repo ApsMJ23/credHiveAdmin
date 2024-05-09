@@ -11,6 +11,9 @@ const DashboardTable = (props: TableProps) => {
     const [params,setParams] = useSearchParams();
 
     const [isFlagged, setIsFlagged] = useState<{[key:number]:boolean}>({});
+    useEffect(()=>{
+        setIsFlagged({})
+    },[rows])
     const handleClick = (index:number) => {
         if(index===0){
             setShowViewModal(true);
