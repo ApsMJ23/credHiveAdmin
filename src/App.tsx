@@ -3,7 +3,6 @@ import {BrowserRouter} from "react-router-dom";
 import RootRoutes from "./routes/RootRoutes.tsx";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
-import { useEffect } from 'react';
 
 const App = () => {
     return (

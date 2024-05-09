@@ -41,7 +41,7 @@ describe('DashboardTable', () => {
 
         // Check rows
         rows.forEach((row) => {
-            Object.entries(row).forEach(([key, value]) => {
+            Object.entries(row).forEach(([ value]) => {
                 expect(screen.getByText(value)).toBeInTheDocument();
             });
         });
