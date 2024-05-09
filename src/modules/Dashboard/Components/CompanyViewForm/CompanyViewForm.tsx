@@ -33,7 +33,7 @@ const CompanyViewForm = ({setShowViewModal}:{setShowViewModal:(value:boolean)=>v
                     )
                 })}
             </div>
-            <button onClick={() => {
+            <button style={{marginTop:'1rem'}} onClick={() => {
                 params.delete('id');
                 setParams(params);
                 setShowViewModal(false)

@@ -11,10 +11,6 @@ const DashboardTable = (props: TableProps) => {
     const [params,setParams] = useSearchParams();
 
     const [isFlagged, setIsFlagged] = useState<{[key:number]:boolean}>({});
-    useEffect(() => {
-        // We can write the logic for flagged entries here when the api is integrated
-        setIsFlagged(Object.fromEntries(rows.map((_,i)=>[i,false])));
-    }, [rows]);
     const handleClick = (index:number) => {
         if(index===0){
             setShowViewModal(true);
@@ -30,16 +26,16 @@ const DashboardTable = (props: TableProps) => {
                     <td style={isFlagged[index]?{background:'rgb(255, 230, 230)'}:{}} className={i==0?styles.FrozenCell:styles.TableCell} key={i}>
                         <span className={styles.CellText}>
                         {i===0&&(isFlagged[index] ? (
-                            <FontAwesomeIcon style={{cursor:'pointer'}} fontVariant={'regular'} onClick={()=>setIsFlagged({...isFlagged,[index]:false})} icon={faFlag} color={'red'}/>
+                            <FontAwesomeIcon data-testid='flag-icon' style={{cursor:'pointer'}} fontVariant={'regular'} onClick={()=>setIsFlagged({...isFlagged,[index]:false})} icon={faFlag} color={'red'}/>
                         ) : (
-                            <FontAwesomeIcon style={{cursor:'pointer'}} onClick={()=>setIsFlagged({...isFlagged,[index]:true})} icon={faFlag} color={'gray'}/>
+                            <FontAwesomeIcon data-testid='flag-icon' style={{cursor:'pointer'}} onClick={()=>setIsFlagged({...isFlagged,[index]:true})} icon={faFlag} color={'gray'}/>
                         ))}
                             <span onClick={()=>handleClick(i)} style={i===0?{cursor:'pointer',textDecoration:'underline',color:'darkblue'}:{}}>{row[key]}</span>
                         </span>
                     </td>
                 ))}
                 <td style={isFlagged[index]?{background:'rgb(255, 230, 230)'}:{}} className={styles.TableCell}>
-                    <FontAwesomeIcon onClick={()=>{
+                    <FontAwesomeIcon data-testid='edit-icon' onClick={()=>{
                         setShowEditingModal(true)
                         params.set('id',`${index}`)
                         setParams(params)

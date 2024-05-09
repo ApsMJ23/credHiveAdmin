@@ -10,7 +10,7 @@ const TabSelector = ({ tabs }:{tabs:{title:string,navigation:string}[]}) => {
 
     return (
         <div className={styles['tab-selector']}>
-            <div className={styles['tab-buttons']}>
+            <div data-testid='tabselector' className={styles['tab-buttons']}>
                 {tabs.map((tab, index:number) => (
                     <div
                         key={index}

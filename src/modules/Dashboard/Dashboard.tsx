@@ -11,12 +11,17 @@ import CompanyEditForm from "./Components/CompanyEditForm/CompanyEditForm.tsx";
 import CompanyViewForm from "./Components/CompanyViewForm/CompanyViewForm.tsx";
 
 const Dashboard = () => {
-    const [dashBoardData, setDashBoardData] = useState(FakeDataArray);
+    const [dashBoardData, setDashBoardData] = useState<{
+        companyName: string;
+    informalName: string;
+    recentEditor: string;
+    updatedOn: string;
+    previousChanges: number;
+    }[]|null>(null);
     const [showEditingModal, setShowEditingModal] = useState(false);
     const [showViewModal, setShowViewModal] = useState(false);
     const [pageNo, setPageNo] = useState(1);
     const [params, setParams] = useSearchParams();
-
 
     const fetchData = async (pageNo: number, maxCount: number) => {
         // fetch data from api
@@ -41,18 +46,16 @@ const Dashboard = () => {
         switch (type) {
             case 'prev':
                 if (pageNo > 1) {
-                    setPageNo(pageNo - 1);
-                    fetchData(pageNo - 1, 10);
+                    setPageNo(prevPageNo => prevPageNo - 1);
                     params.set('page', `${pageNo - 1}`);
-                    setParams(params)
+                    setParams(params);
                 }
                 break;
             case 'next':
                 if (pageNo < FakeDataArray.length / 10) {
-                    setPageNo(pageNo + 1);
-                    fetchData(pageNo + 1, 10);
+                    setPageNo(prevPageNo => prevPageNo + 1);
                     params.set('page', `${pageNo + 1}`);
-                    setParams(params)
+                    setParams(params);
                 }
                 break;
             default:
@@ -67,11 +70,11 @@ const Dashboard = () => {
             <h1>Companies List</h1>
             <TabSelector tabs={TabData}/>
             <div className={styles.DashboardContainer}>
-                <div className={styles.TableContainer}>
+                {dashBoardData&&<div className={styles.TableContainer}>
                     <DashboardTable setShowViewModal={setShowViewModal} setShowEditingModal={setShowEditingModal} headers={FakeDataHeaders}
                                     rows={dashBoardData}/>
-                </div>
-                <div className={styles.DashboardTableFooter}>
+                </div>}
+                <div data-testid='pagination' className={styles.DashboardTableFooter}>
                     <div>Page {pageNo} of {FakeDataArray.length / 10}</div>
                     <div className={styles.ButtonContainer}>
                         <button onClick={() => changePageNo('prev')} style={{width: '5rem'}}>Previous</button>

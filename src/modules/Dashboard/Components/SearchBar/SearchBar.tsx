@@ -12,7 +12,7 @@ type SearchBarProps = {
         recentEditor: string;
         updatedOn: string;
         previousChanges: number;
-    }[]>>
+    }[]|null>>
 }
 
 const SearchBar = (props: SearchBarProps) => {
@@ -46,7 +46,7 @@ const SearchBar = (props: SearchBarProps) => {
                 onChange={handleInputChange}
             />
             <div className={styles.searchIcon}>
-                <FontAwesomeIcon icon={faSearch}/>
+                <FontAwesomeIcon data-testid='searchIcon' icon={faSearch}/>
             </div>
         </div>
     );

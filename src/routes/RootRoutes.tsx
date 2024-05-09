@@ -1,4 +1,4 @@
-import {Suspense} from "react";
+import {Suspense, useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 import Loading from "../common/Components/Loading/Loading.tsx";
 import {PRIVATE_ROUTES, PUBLIC_ROUTES} from "../constants/RouteConsts.ts";
